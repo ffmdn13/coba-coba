@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>index</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .side-bg {
+            background-image: linear-gradient(6deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url('https://i.pinimg.com/736x/ed/2a/1e/ed2a1e972df02f3bdd531558a1419e82.jpg');
+            width: 100vmin;
+            height: 100vmin;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .form {
+            box-shadow: 0 0 3px 1px rgba(0, 0, 0, .5);
+            width: 370px;
+            height: 300px;
+            box-sizing: border-box;
+            padding: 2px 20px;
+            margin: auto;
+        }
+
+        .form .name {
+            width: 100%;
+            height: 50px;
+            outline: none;
+            border: 1px solid gray;
+            border-radius: 5px;
+            text-indent: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form .comment {
+            width: 100%;
+            height: 80px;
+            outline: none;
+            border: 1px solid gray;
+            border-radius: 5px;
+            text-indent: 5px;
+            margin-bottom: 10px;
+        }
+
+        .form button {
+            width: 80px;
+            height: 35px;
+            background-color: transparent;
+            cursor: pointer;
+            border: 1px solid rgb(163, 163, 2);
+            color: rgb(112, 112, 4);
+            border-radius: 4px;
+        }
+
+        .form h3 {
+            text-align: center;
+            color: rgb(83, 83, 83);
+        }
+    </style>
+
+    <script>
+        function postdata() {
+            let name = $('#name').val();
+            let comment = $('#comment').val();
+
+            $.ajax({
+                    type: 'POST',
+                    url: '/bucket',
+                    data: {
+                        'name_data': name,
+                        'comment_data': comment_data
+                    },
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="side-bg"></div>
+        <div class="form">
+            <h3>Hello World</h3>
+            <input type="text" id="name" class="name" placeholder="Name">
+            <textarea id="comment" class="comment" placeholder="Comment"></textarea>
+            <button type="submit" onclick='postdata()'>Post</button>
+        </div>
+    </div>
+</body>
+
+</html>
